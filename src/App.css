@@ -5,7 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 html {
@@ -37,7 +41,7 @@ img {
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo {
@@ -104,42 +108,101 @@ img {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile dropdown */
+/* Mobile sidebar drawer — slides in from left */
 .mobile-menu {
-  display: none;
   position: fixed;
-  top: 56px;
+  top: 0;
   left: 0;
-  width: 100%;
-  background: #34495e;
-  z-index: 999;
-  padding: 10px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  width: 260px;
+  height: 100vh;
+  background: #2c3e50;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.35);
 }
 
 .mobile-menu.open {
-  display: block;
+  transform: translateX(0);
 }
 
-.mobile-menu ul {
-  list-style: none;
+/* Sidebar header */
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1a252f;
 }
 
-.mobile-menu ul li {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.mobile-menu ul li a {
-  display: block;
+.mobile-menu-header .menu-logo {
   color: white;
+  font-size: 18px;
+  font-weight: bold;
   text-decoration: none;
-  padding: 14px 20px;
-  font-size: 15px;
+}
+
+.mobile-menu-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
   transition: background 0.2s;
 }
 
+.mobile-menu-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Nav links inside drawer */
+.mobile-menu ul {
+  list-style: none;
+  padding: 12px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.mobile-menu ul li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  padding: 15px 24px;
+  font-size: 15px;
+  transition:
+    background 0.2s,
+    padding-left 0.2s;
+}
+
 .mobile-menu ul li a:hover {
-  background: rgba(52, 152, 219, 0.3);
+  background: rgba(52, 152, 219, 0.25);
+  padding-left: 30px;
+}
+
+/* Dim overlay behind sidebar */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1099;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.open {
+  display: block;
 }
 
 /* =============================================
@@ -201,12 +264,14 @@ img {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .hero-content button:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   background: white;
 }
 
@@ -253,14 +318,16 @@ img {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 .card img {
@@ -575,7 +642,7 @@ button:hover {
 .about-image-col img {
   width: 100%;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .about-text-col {
@@ -653,7 +720,7 @@ button:hover {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
+
   .checkout-wrapper {
     gap: 24px;
   }
@@ -665,7 +732,7 @@ button:hover {
   .hamburger {
     display: flex;
   }
-  
+
   .nav-links {
     display: none;
   }
@@ -675,7 +742,7 @@ button:hover {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   /* Order: form first on mobile */
   .checkout-wrapper {
     direction: ltr;
