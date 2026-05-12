@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
-import storeImage from "../assets/images.jpg";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -14,7 +13,7 @@ export default function Products() {
   }, []);
 
   const filtered = products.filter((p) =>
-    p.title.toLowerCase().includes(search.toLowerCase()),
+    p.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
